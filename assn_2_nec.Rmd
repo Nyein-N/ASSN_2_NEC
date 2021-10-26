@@ -1,0 +1,73 @@
+---
+title: "ASSIN_2_NEC"
+author: "Nyein Ei Cho"
+date: "10/25/2021"
+output: html_document
+---
+1. Reformat this data frame to obtain the weight as a double numeric into one column
+
+```{r}
+weight<-c(104,96,95,91,87,81,77,75,112,118)
+typeof(weight)
+mode(weight)
+```
+
+2. the time of measurement as factor with two levels before_diet and after_diet
+
+```{r}
+time<-c("before_diet","after_diet")
+
+time.fact<-as.factor(time)
+time.fact
+levels(time.fact)
+```
+
+3.Store this data frame as the first element of a list called BUBBLE_DIET.
+
+```{r}
+BUBBLE_DIET<- data.frame(time.fact, weight)
+BUBBLE_DIET
+
+str(BUBBLE_DIET)
+```
+
+
+
+4. a numeric vector (double) indicating the weight loss (in %) of each subject
+```{r}
+percent<-c(7.692308,4.210526,6.896552,2.597403,-5.357143)
+library(scales)
+wt_loss<-c(0.07692308,0.04210526,0.06896552,0.02597403,-0.05357143)
+wt_lossinper<-percent(wt_loss)
+wt_lossinper
+```
+
+5. a vector of character extracting the row names of the table previously created;
+```{r}
+subject<-c("subject_1","subject_2","subject_3","subject_4","subject_5")
+typeof(subject)
+```
+
+6. combine these two elements in a table with two columns: subject and weight_loss. 
+```{r}
+
+weight_loss<-percent(wt_loss)
+WEIGHT_LOSS<- data.frame(subject, weight_loss)
+WEIGHT_LOSS
+```
+
+7. a list called BUBBLE_DIET
+```{r}
+BUBBLE_DIET.lst <- list(BUBBLE_DIET= BUBBLE_DIET, WEIGHT_LOSS = WEIGHT_LOSS)
+BUBBLE_DIET.lst
+
+WEIGHT_LOSS.lst <- list(subject= subject,weight_loss=weight_loss, WEIGHT_LOSS = WEIGHT_LOSS)
+WEIGHT_LOSS.lst
+
+BUBBLE_DIET.lst <- list(BUBBLE_DIET= BUBBLE_DIET, WEIGHT_LOSS.lst = WEIGHT_LOSS.lst)
+BUBBLE_DIET.lst
+```
+```{r}
+
+```
+
